@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MavelHeroes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hero_list">Lista de Heroes</string>
+    <string name="Power">Poder</string>
+    <string name="intelligence">Inteligencia</string>
+    <string name="hero_image">Imagen del superheroe</string>
+    <string name="convocate_hero">Has convocado al héroe: %s.</string>
+    <string name="cant_clone">"No puedes clonar a un clon."</string>
+    <string name="back">Volver</string>
+    <string name="hero_description">Descripción del personaje</string>
+    <string name="delete">Delete</string>
+    <string name="support_confirm_delete">¿Quieres eliminar a %s?</string>
+    <string name="cancel">Cancelar</string>
+    <string name="accept">Aceptar</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="title_hero_text">
+        <item name="android:fontFamily">@font/marvel_bold</item>
+        <item name="android:textColor">@color/red_text</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="important_text">
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:fontFamily">@font/marvel</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="negrita">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
