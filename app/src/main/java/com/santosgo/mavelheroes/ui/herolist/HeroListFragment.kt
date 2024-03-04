@@ -54,7 +54,7 @@ class HeroListFragment : Fragment() {
     private fun initRecView() {
         heroAdapter = HeroAdapter(
             mutableListOf(),
-            onClickHero = { heroName -> selectHero(heroName)},
+            onClickHero = { id -> selectHero(id)},
             onClickDelete = {  pos -> confirmDeleteHero(pos)}
         )
         binding.rvHeroes.adapter = heroAdapter
@@ -66,8 +66,8 @@ class HeroListFragment : Fragment() {
         }
     }
 
-    private fun selectHero(heroName: String) {
-        val action = HeroListFragmentDirections.actionHeroListFragmentToHeroDetailsFragment(heroName)
+    private fun selectHero(id: String) {
+        val action = HeroListFragmentDirections.actionHeroListFragmentToHeroDetailsFragment(id)
         findNavController().navigate(action)
     }
 
@@ -76,8 +76,6 @@ class HeroListFragment : Fragment() {
 
         initRecView()
         setCollectors()
-
-
     }
 
     private fun setCollectors() {
@@ -91,7 +89,6 @@ class HeroListFragment : Fragment() {
                     }else {
                         binding.pbLoading.isVisible = true
                     }
-
                 }
             }
         }
@@ -101,7 +98,7 @@ class HeroListFragment : Fragment() {
     private fun confirmDeleteHero(pos : Int) {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(resources.getString(R.string.delete))
-            .setMessage(resources.getString(R.string.support_confirm_delete,"spiderman"))
+            .setMessage(resources.getString(R.string.support_confirm_delete,heroListVM.uiState.value.heroList[pos].name))
             .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
                 // Respond to negative button press
             }
@@ -115,6 +112,7 @@ class HeroListFragment : Fragment() {
     //borra un heroe de la lista y notifica al adapter.
     private fun deleteHero(pos : Int) {
 //        listaHeroes.removeAt(pos)
+        heroListVM.deleteHero(pos)
         heroAdapter.notifyItemRemoved(pos)
     }
 }

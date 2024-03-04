@@ -23,7 +23,7 @@
             android:id="@+id/action_heroDetailsFragment_to_heroListFragment"
             app:destination="@id/heroListFragment" />
         <argument
-            android:name="name"
+            android:name="id"
             app:argType="string"
             android:defaultValue='""' />
     </fragment>

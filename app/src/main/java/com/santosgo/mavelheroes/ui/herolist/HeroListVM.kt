@@ -18,6 +18,7 @@ class HeroListVM(
     private val heroesRepository: HeroesRepository
 ) : ViewModel() {
 
+
     private val _uiState: MutableStateFlow<HeroListUiState> = MutableStateFlow(HeroListUiState())
     val uiState: StateFlow<HeroListUiState> = _uiState.asStateFlow()
 
@@ -41,6 +42,16 @@ class HeroListVM(
                     )
                 }
             }
+        }
+    }
+
+    fun deleteHero(pos: Int) {
+        _uiState.update { currentSate ->
+            val heroes = currentSate.heroList.toMutableList()
+            heroes.removeAt(pos)
+            currentSate.copy(
+                heroList = heroes
+            )
         }
     }
 

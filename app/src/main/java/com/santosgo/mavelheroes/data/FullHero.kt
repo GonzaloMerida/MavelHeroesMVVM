@@ -19,7 +19,8 @@ data class FullHero(
             power = if(powerstats.power == "null") 0  else powerstats.power.toInt(),
             intelligence = if(powerstats.intelligence == "null") 0  else powerstats.intelligence.toInt(),
             photo = image.url,
-            description = work.occupation
+            description = work.occupation,
+            id = id
         )
     }
 }

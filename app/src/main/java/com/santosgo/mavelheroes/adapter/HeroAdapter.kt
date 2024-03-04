@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.santosgo.mavelheroes.R
 import com.santosgo.mavelheroes.data.Hero
@@ -11,7 +12,7 @@ import com.santosgo.mavelheroes.databinding.HeroItemBinding
 
 //Clase que implementa el adaptador (Adapter), por lo que debe implementar los métodos.
 class HeroAdapter(
-    private val heroList : MutableList<Hero>,
+    private val _heroList : MutableList<Hero>,
     private val onClickHero: (String) -> Unit,
     private val onClickDelete: (Int) -> Unit
 ) : RecyclerView.Adapter<HeroAdapter.HeroViewHolder>() {
@@ -31,17 +32,17 @@ class HeroAdapter(
             onClickDelete: (Int) -> Unit
         ) {
             binding.tvName.text = hero.name
-            binding.rbIntelligence.rating = hero.intelligence.toFloat()/2
-            binding.rbPower.rating = hero.power.toFloat()/2
+            binding.rbIntelligence.rating = hero.intelligence.toFloat()/20
+            binding.rbPower.rating = hero.power.toFloat()/20
             //tomar fotos de drawable...
             val context = binding.ivPhoto.context
-            val idPhoto = context.resources.getIdentifier(hero.photo, DRAWABLE,context.packageName)
-            binding.ivPhoto.setImageResource(idPhoto)
-
+//            val idPhoto = context.resources.getIdentifier(hero.photo, DRAWABLE,context.packageName)
+//            binding.ivPhoto.setImageResource(idPhoto)
+            Glide.with(context).load(hero.photo).circleCrop().into(binding.ivPhoto)
 
             binding.root.setOnClickListener {
                 //Snackbar.make(it,context.getString(R.string.convocate_hero,hero.name),Snackbar.LENGTH_SHORT).show()
-                onClickHero(hero.name)
+                onClickHero(hero.id)
             }
 
             //borrado de un elemento de la lista con función lambda.
@@ -57,16 +58,17 @@ class HeroAdapter(
     }
 
     override fun onBindViewHolder(holder: HeroViewHolder, position: Int) {
-        val hero = heroList[position]
+        val hero = _heroList[position]
         holder.bind(hero, onClickHero, onClickDelete)
 
     }
 
     override fun getItemCount(): Int {
-        return heroList.size
+        return _heroList.size
     }
 
     fun setHeroList(heroList: List<Hero>) {
-//        this.heroList = heroList
+        _heroList.clear()
+        _heroList.addAll(heroList)
     }
 }
